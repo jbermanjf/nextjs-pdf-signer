@@ -16,12 +16,20 @@ exports.sendEmail = functions.https.onCall(async (data, context) => {
   const { to, subject, content, attachments } = data;
 
   try {
+    // Map through attachments and create a new object with the required fields
+    const formattedAttachments = attachments.map((attachment) => ({
+      content: Buffer.from(attachment.content, 'base64'),
+      filename: attachment.filename,
+      contentType: attachment.type,
+      contentDisposition: attachment.disposition,
+    }));
+
     const mailOptions = {
       from: gmailEmail,
       to,
       subject,
       html: content,
-      attachments,
+      attachments: formattedAttachments,
     };
 
     await transport.sendMail(mailOptions);
