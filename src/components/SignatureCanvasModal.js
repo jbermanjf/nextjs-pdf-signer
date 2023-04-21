@@ -51,12 +51,13 @@ const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, 
     const modifiedPdfBytes = await pdfDoc.save();
     const blob = new Blob([modifiedPdfBytes], { type: 'application/pdf' });
     saveAs(blob, 'signed-document.pdf');
-    await sendPdfByEmail('jacobberman1234@gmail.com', pdfDoc.saveAsBase64());
   
     // Submit the signature
     const signatureData = sigCanvas.toDataURL();
     onSignatureEnd(signatureData);
     toggleModal();
+    const base64 = await pdfDoc.saveAsBase64();
+    await sendPdfByEmail('jacobberman1234@gmail.com', base64);
   };
 
   return (
