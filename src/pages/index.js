@@ -22,6 +22,9 @@ export default function Home() {
   const [guardianName, setGuardianName] = useState('');
   const [guardianRelationship, setGuardianRelationship] = useState('');
   const [email, setEmail] = useState('');
+  const [emergencyContact, setEmergencyContact] = useState('');
+  const [emergencyContactRelationship, setEmergencyContactRelationship] = useState('');
+  const [emergencyContactPhone, setEmergencyContactPhone] = useState('');
   
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -74,6 +77,18 @@ export default function Home() {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+  
+  const handleEmergencyContactChange = (e) => {
+    setEmergencyContact(e.target.value);
+  };
+
+  const handleEmergencyContactReleationshipChange = (e) => {
+    setEmergencyContactRelationship(e.target.value);
+  };
+
+  const handleEmergencyContactPhoneChange = (e) => {
+    setEmergencyContactPhone(e.target.value);
+  };
 
   return (
     <div>
@@ -99,6 +114,12 @@ export default function Home() {
               handleGuardianRelationshipChange={handleGuardianRelationshipChange}
               email={email}
               setEmail={handleEmailChange}
+              emergencyContact={emergencyContact}
+              setEmergencyContact={handleEmergencyContactChange}
+              emergencyContactRelationship={emergencyContactRelationship}
+              setEmergencyContactRelationship={handleEmergencyContactReleationshipChange}
+              emergencyContactPhone={emergencyContactPhone}
+              setEmergencyContactPhone={handleEmergencyContactPhoneChange}
             />
           ) : (
             <PDFView
@@ -130,6 +151,9 @@ export default function Home() {
           guardianName={guardianName}
           guardianRelationship={guardianRelationship}
           email={email}
+          emergencyContact={emergencyContact}
+          emergencyContactRelationship={emergencyContactRelationship}
+          emergencyContactPhone={emergencyContactPhone}
         />
       </main>
     </div>

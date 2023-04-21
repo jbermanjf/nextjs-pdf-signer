@@ -3,7 +3,7 @@ import React from 'react';
 const Form = ({
     participantName, participantAddress, date, handleNameChange, handleAddressChange, handleDateChange,
     isMinor, handleIsMinorChange, guardianName, handleGuardianNameChange, guardianRelationship, handleGuardianRelationshipChange,
-    email, setEmail }) => (
+    email, setEmail, emergencyContact, setEmergencyContact, emergencyContactRelationsip: emergencyContactRelationship, setEmergencyContactRelationship, emergencyContactPhone, setEmergencyContactPhone }) => (
   <div className="form-container">
     <input
       type="text"
@@ -56,6 +56,27 @@ const Form = ({
         )
     }
     <div className="form-container">
+    <input
+      type="text"
+      value={emergencyContact}
+      onChange={setEmergencyContact}
+      placeholder="Emergency Contact"
+      className="text-field"
+    />
+    <input
+      type="text"
+      value={emergencyContactRelationship}
+      onChange={setEmergencyContactRelationship}
+      placeholder="Emergency Contact Relationship"
+      className="text-field"
+    />
+    <input
+      type="text"
+      value={emergencyContactPhone}
+      onChange={setEmergencyContactPhone}
+      placeholder="Emergency Contact Phone Number"
+      className="text-field"
+    />
     <input
       type="email"
       value={email}
