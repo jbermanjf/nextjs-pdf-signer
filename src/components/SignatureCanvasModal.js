@@ -3,7 +3,7 @@ import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import { saveAs } from 'file-saver';
 import { sendPdfByEmail } from '@/sendEmail';
 
-const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, participantName, participantAddress, date, isMinor, guardianName, guardianRelationship }) => {
+const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, participantName, participantAddress, date, isMinor, guardianName, guardianRelationship, email }) => {
   let sigCanvas;
 
   const submitSignature = async () => {
@@ -58,6 +58,7 @@ const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, 
     toggleModal();
     const base64 = await pdfDoc.saveAsBase64();
     await sendPdfByEmail('jacobberman1234@gmail.com', base64);
+    await sendPdfByEmail(email, base64);
   };
 
   return (

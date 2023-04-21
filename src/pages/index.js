@@ -124,10 +124,12 @@ export default function Home() {
           pdfUrl={waiverPdf}
           participantAddress={participantAddress}
           participantName={participantName}
+          onSignatureEnd={setSignatureData}
           date = {date}
           isMinor={isMinor}
           guardianName={guardianName}
           guardianRelationship={guardianRelationship}
+          email={email}
         />
       </main>
     </div>
