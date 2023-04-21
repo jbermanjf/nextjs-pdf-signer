@@ -18,7 +18,6 @@ const functions = getFunctions(app);
 const sendEmailFunction = httpsCallable(functions, 'sendEmail');
 
 export async function sendPdfByEmail(email, pdfBase64) {
-  const pdfBuffer = Buffer.from(pdfBase64, 'base64');
   // Send the email
   try {
     const response = await sendEmailFunction({
@@ -27,10 +26,11 @@ export async function sendPdfByEmail(email, pdfBase64) {
       content: 'Please find the signed waiver attached.',
       attachments: [
         {
-          content: pdfBuffer,
+          content: pdfBase64,
           filename: 'signed-document.pdf',
           type: 'application/pdf',
           disposition: 'attachment',
+          endcoing: 'base64',
         },
       ],
     });
