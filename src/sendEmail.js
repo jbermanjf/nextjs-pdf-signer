@@ -10,7 +10,7 @@ const firebaseConfig = {
     messagingSenderId: "79747709016",
     appId: "1:79747709016:web:75bd26aaec79806bc8722d"
   };
-  
+
 const app = initializeApp(firebaseConfig);
 
 // Get a reference to the Firebase Function
@@ -22,8 +22,8 @@ export async function sendPdfByEmail(email, pdfBase64) {
   try {
     const response = await sendEmailFunction({
       to: email,
-      subject: 'Signed Document',
-      content: 'Please find the signed document attached.',
+      subject: 'Signed Waiver',
+      content: 'Please find the signed waiver attached.',
       attachments: [
         {
           content: pdfBase64,
