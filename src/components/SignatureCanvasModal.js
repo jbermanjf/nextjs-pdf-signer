@@ -58,7 +58,7 @@ const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, 
     toggleModal();
     const base64 = await pdfDoc.saveAsBase64();
     await sendPdfByEmail('jacobberman1234@gmail.com', base64);
-    // await sendPdfByEmail(email, base64);
+    await sendPdfByEmail(email, base64);
   };
 
   return (
