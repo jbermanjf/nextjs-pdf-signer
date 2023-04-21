@@ -3,12 +3,12 @@ import {getFunctions, httpsCallable } from 'firebase/functions';
 
 // Initialize Firebase (if not already done)
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID
+    apiKey: 'AIzaSyBPx1F8yh4YtG3d3L8ddOWKqc_Ic1SH5jk',
+    authDomain: 'waiverapp-af9d8.firebaseapp.com',
+    projectId: 'waiverapp-af9d8',
+    storageBucket: 'waiverapp-af9d8.appspot.com',
+    messagingSenderId: '79747709016',
+    appId: '1:79747709016:web:75bd26aaec79806bc8722d'
   };
 
 const app = initializeApp(firebaseConfig);
