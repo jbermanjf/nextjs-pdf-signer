@@ -30,7 +30,7 @@ export async function sendPdfByEmail(email, pdfBase64) {
           filename: 'signed-document.pdf',
           type: 'application/pdf',
           disposition: 'attachment',
-          endcoing: 'base64',
+          encoding: 'base64',
         },
       ],
     });
