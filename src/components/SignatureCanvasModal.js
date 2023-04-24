@@ -1,6 +1,7 @@
 import SignatureCanvas from 'react-signature-canvas';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import { saveAs } from 'file-saver';
+import { sendPdfByEmail } from '@/sendEmail';
 
 let date = new Date();
 let options = { month: '2-digit', day: '2-digit', year: 'numeric' };
