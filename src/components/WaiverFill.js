@@ -1,13 +1,5 @@
 import React from 'react';
 
-const date = new Date();
-
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
-
-let currentDate = `${month}-${day}-${year}`;
-
 const Form = ({
     participantName, participantAddress, date, handleNameChange, handleAddressChange, handleDateChange,
     isMinor, handleIsMinorChange, guardianName, handleGuardianNameChange, guardianRelationship, handleGuardianRelationshipChange,

@@ -1,18 +1,15 @@
 import SignatureCanvas from 'react-signature-canvas';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import { saveAs } from 'file-saver';
-import { sendPdfByEmail } from '@/sendEmail';
+
+let date = new Date();
+let options = { month: '2-digit', day: '2-digit', year: 'numeric' };
+let currentDate = date.toLocaleDateString(undefined, options);
 
 const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, participantName, participantAddress, date, isMinor, guardianName, guardianRelationship, email, emergencyContact, emergencyContactPhone, emergencyContactRelationship }) => {
   let sigCanvas;
 
-  const date = new Date();
 
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-
-  let currentDate = `${month}-${day}-${year}`;
 
   const submitSignature = async () => {
     // Load the existing PDF document
