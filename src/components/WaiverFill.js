@@ -1,5 +1,13 @@
 import React from 'react';
 
+const date = new Date();
+
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+
+let currentDate = `${month}-${day}-${year}`;
+
 const Form = ({
     participantName, participantAddress, date, handleNameChange, handleAddressChange, handleDateChange,
     isMinor, handleIsMinorChange, guardianName, handleGuardianNameChange, guardianRelationship, handleGuardianRelationshipChange,
@@ -18,13 +26,6 @@ const Form = ({
       onChange={handleAddressChange}
       placeholder="Participant's Address"
       className="text-field"
-    />
-    <input
-      type="date"
-      value={date}
-      onChange={handleDateChange}
-      placeholder="Date"
-      className="participants-name"
     />
     <div className="checkbox-container mt-2">
         <input 

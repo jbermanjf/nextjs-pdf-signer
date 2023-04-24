@@ -6,6 +6,14 @@ import { sendPdfByEmail } from '@/sendEmail';
 const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, participantName, participantAddress, date, isMinor, guardianName, guardianRelationship, email, emergencyContact, emergencyContactPhone, emergencyContactRelationship }) => {
   let sigCanvas;
 
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  let currentDate = `${month}-${day}-${year}`;
+
   const submitSignature = async () => {
     // Load the existing PDF document
     const existingPdfBytes = await fetch(pdfUrl).then((res) => res.arrayBuffer());
@@ -39,7 +47,7 @@ const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, 
     //Bundle of participant info
     page.drawText(participantName, { x: 145, y: 395, size: fontSize, font }); //bottom
     page.drawText(participantAddress, { x: 150, y: 370, size: fontSize, font });
-    page.drawText(date, { x: 75, y: 325, size: fontSize, font });
+    page.drawText(currentDate, { x: 75, y: 325, size: fontSize, font });
 
 
     if(isMinor)
@@ -47,7 +55,7 @@ const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, 
         page.drawText(participantName, { x: 300, y: 200, size: fontSize, font });
         page.drawText(guardianName, { x: 155, y: 150, size: fontSize, font });
         page.drawText(guardianRelationship, { x: 150, y: 125, size: fontSize, font });
-        page.drawText(date, { x: 75, y: 62, size: fontSize, font });
+        page.drawText(currentDate, { x: 75, y: 62, size: fontSize, font });
     }
 
     //Write emergency contact info
@@ -57,17 +65,17 @@ const SignatureCanvasModal = ({ isVisible, toggleModal, onSignatureEnd, pdfUrl, 
   
     // Serialize the modified PDF and save it
     const modifiedPdfBytes = await pdfDoc.save();
-    // const blob = new Blob([modifiedPdfBytes], { type: 'application/pdf' });
-    // saveAs(blob, 'signed-document.pdf');
+    const blob = new Blob([modifiedPdfBytes], { type: 'application/pdf' });
+    saveAs(blob, 'signed-document.pdf');
   
     // Submit the signature
     const signatureData = sigCanvas.toDataURL();
     onSignatureEnd(signatureData);
     toggleModal();
     const base64 = await pdfDoc.saveAsBase64();
-    await sendPdfByEmail(process.env.EMAIL, base64);
-    await sendPdfByEmail(process.env.TEST_EMAIL, base64);
-    await sendPdfByEmail(email, base64);
+    // await sendPdfByEmail(process.env.EMAIL, base64);
+    // await sendPdfByEmail(process.env.TEST_EMAIL, base64);
+    // await sendPdfByEmail(email, base64);
   };
 
   return (
